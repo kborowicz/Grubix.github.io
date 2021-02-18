@@ -1,0 +1,67 @@
+@import '@scss/Bootstrap';
+
+.container {
+    @include flex(stretch);
+    flex-direction: column;
+    position: relative;
+    font-size: 14px;
+
+    input {
+        width: 100%;
+        position: relative;
+        font-family: inherit;
+        height: 40px;
+        border-radius: 4px;
+        border: 2px solid #E5E8EC;
+        padding: 0 10px 0 10px;
+        position: relative;
+        z-index: 1;
+        background-color: rgba(0,0,0,0);
+
+        &:focus {
+            outline: none;
+            border: 2px solid $color-secondary;
+            box-shadow: 0px 0px 5px rgba(163, 98, 234, 0.5);
+        }
+    }
+
+    &_error {
+        input {
+            border: 2px solid $color-error;
+        }
+    }
+}
+
+.wrapper {
+    position: relative;
+}
+
+.placeholder {
+    position: absolute;
+    z-index: 0;
+    padding: 0 2px 0 2px;
+    left: 10px;
+    top: 50%;
+    transform: scale(1) translateY(-50%);
+    user-select: none;
+    color: #949799;
+    transition: all .2s;
+}
+
+.placeholder_focus {
+    font-size: 12px;
+    color: $color-secondary;
+    font-weight: 500;
+    background-color: #fff;
+    transform: scale(0.95);
+    left: 7px;
+    transform-origin: top left;
+    top: -9px;
+    z-index: 2;
+}
+
+.errorLabel {
+    margin-top: 5px;
+    color: $color-error;
+    font-size: 12px;
+}
