@@ -79,8 +79,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       minify: true,
+      inject: false,
       template: './app/index.html',
-      inject: false
+      favicon: './favicon.ico'
     })
   ],
   resolve: {
