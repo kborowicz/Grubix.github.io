@@ -1,16 +1,27 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import styles from './Generator.scss?module';
 import buttons from '@components/Button/Button.scss?module';
 import TextField from '@components/TextField';
 
 const Generator = props => {
+    const [name, setName] = useState();
+    const [lastName, setLastName] = useState();
+    const [birthDate, setBirthDate] = useState();
+    const [phoneNumber, setPhoneNumber] = useState();
+    const [emailAddress, setEmailAddress] = useState();
+    const [street, setStreet] = useState();
+    const [zipCode, setZipCode] = useState();
+
+    useEffect(() => {
+        console.log(name, lastName, birthDate, phoneNumber, emailAddress, street, zipCode);
+    }, [zipCode])
+
     return (
     <Fragment>
         <main className={styles.main}>
             <nav className={styles.main__topnav}>
                 <div className={styles.topnav__user}>
-                    <span id="js-user-name">Krystian</span>
-                    <span id="js-user-lastname">Borowicz</span>
+                    <span>{ (name || 'name') + ' ' + (lastName || 'lastname') }</span>
                 </div>
                 <div className={styles.topnav__buttons}>
                     <button type="button" className={buttons.buttonLight}>log out</button>
@@ -24,26 +35,25 @@ const Generator = props => {
                     <input type="file" id="js-image-upload-input" accept="image/*" className="cv-image__select"/>
                 </div>
                 <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextField placeholder="Name"/>
-                    <TextField placeholder="Lastname"/>
+                    <TextField placeholder="Name" initialValue="Krystian" onChange={(e) => setName(e.target.value)}/>
+                    <TextField placeholder="Lastname" initialValue="Borowicz"  onChange={(e) => setLastName(e.target.value)}/>
                 </div>
                 <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextField placeholder="Birth date DD.MM.YYYY"/>
-                    <TextField placeholder="Phone number"/>
+                    <TextField placeholder="Birth date DD.MM.YYYY" initialValue="08.12.1998" onChange={e => setBirthDate(e.target.value)}/>
+                    <TextField placeholder="Phone number" initialValue="696838220"  onChange={e => setPhoneNumber(e.target.value)}/>
                 </div>
                 <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--2-3']}>
-                    <TextField placeholder="Email"/>
+                    <TextField placeholder="Email address" initialValue="krypi23@gmail.com"  onChange={e => setEmailAddress(e.target.value)}/>
                 </div>
                 <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextField placeholder="Street and House number"/>
-                    <TextField placeholder="Zip code and town"/>
+                    <TextField placeholder="Street, house number" value="Nagietkowa 28" onChange={e => setStreet(e.target.value)}/>
+                    <TextField placeholder="Zip code and town" initialValue="Luboń 62-030"  onChange={e => setZipCode(e.target.value)}/>
                 </div>
                 <div className={styles.row + ' ' + styles['row--1']}>
                     <textarea className="form-control form-control--textarea" placeholder="RODO" id="js-basedata-rodo"></textarea>
                 </div>
                 <div className={styles.row + ' ' + styles['row--1']}>
-                    <TextField placeholder="Github"/>
-                    <input type="text" className="form-control" placeholder="GitHub link" id="js-basedata-github"/>
+                    <TextField placeholder="Github" initialValue="github.com/Grubix" />
                 </div>
             </div>
             <div className={styles.data_group}>

@@ -1,15 +1,25 @@
 @import '@scss/Bootstrap';
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus {
+    transition: background-color 10000s !important;
+}
+
 .container {
     @include flex(stretch);
     flex-direction: column;
     position: relative;
-    font-size: 14px;
 
     input {
         width: 100%;
         position: relative;
         font-family: inherit;
+        font-size: inherit;
         height: 40px;
         border-radius: 4px;
         border: 2px solid #E5E8EC;
@@ -17,6 +27,7 @@
         position: relative;
         z-index: 1;
         background-color: rgba(0,0,0,0);
+        transition: all .2s;
 
         &:focus {
             outline: none;
@@ -25,7 +36,7 @@
         }
     }
 
-    &_error {
+    &.error {
         input {
             border: 2px solid $color-error;
         }
@@ -46,17 +57,17 @@
     user-select: none;
     color: #949799;
     transition: all .2s;
+    box-shadow: 0px 0px 8px #fff;
 }
 
-.placeholder_focus {
-    font-size: 12px;
+.placeholderFocus {
+    font-size: 11.5px;
     color: $color-secondary;
     font-weight: 500;
     background-color: #fff;
-    transform: scale(0.95);
     left: 7px;
     transform-origin: top left;
-    top: -9px;
+    top: 0;
     z-index: 2;
 }
 

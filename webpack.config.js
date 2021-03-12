@@ -45,9 +45,9 @@ Encore
 
     .addAliases({
         '@': path.resolve(__dirname, 'assets'),
-        '@scss': path.resolve(__dirname, 'assets/Scss'),
-        '@components': path.resolve(__dirname, 'assets/Components'),
-        '@pages': path.resolve(__dirname, 'assets/Pages'),
+        '@scss': path.resolve(__dirname, 'assets/scss'),
+        '@components': path.resolve(__dirname, 'assets/components'),
+        '@pages': path.resolve(__dirname, 'assets/pages'),
     })
 ;
 
