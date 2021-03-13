@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- cv-generator © 2021 | Krystian Borowicz -->
+        <!-- cv-gen © 2021 | Krystian Borowicz -->
 
         <title>{% block title %}CV Generator{% endblock %}</title>
         <meta charset="UTF-8">
@@ -11,16 +11,10 @@
         <meta name="theme-color" content="#000000">
         <meta name="msapplication-navbutton-color" content="#000000">
         <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
-
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
     <body>
         {% block body %}<div id="app"></div>{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </body>
 </html>

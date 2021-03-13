@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Login.scss?module';
 import buttons from '@components/Button/Button.scss?module'
-import TextField from '@components/TextField';
+import TextField from '@components/TextInput/TextInput';
 
 const Login = props => {
     return (

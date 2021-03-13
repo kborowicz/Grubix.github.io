@@ -1,27 +1,36 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import styles from './Generator.scss?module';
 import buttons from '@components/Button/Button.scss?module';
-import TextField from '@components/TextField';
+import TextInput from '@components/TextInput/TextInput';
+import xd from './xd.jpg';
+import { AiOutlineUser } from 'react-icons/ai';
 
-const Generator = props => {
-    const [name, setName] = useState();
-    const [lastName, setLastName] = useState();
-    const [birthDate, setBirthDate] = useState();
-    const [phoneNumber, setPhoneNumber] = useState();
-    const [emailAddress, setEmailAddress] = useState();
-    const [street, setStreet] = useState();
-    const [zipCode, setZipCode] = useState();
+const Generator = () => {
+    const [baseDataFields, setBaseDataFields] = useState({
+        name: 'Krystian',
+        lastname: 'Borowicz',
+        birthDate: '08.12.1998',
+        phoneNumber: '696838220',
+        email: 'krypi23@gmail.com',
+        street: 'Nagietkowa 28',
+        zipCode: '62-030 Luboń',
+        gdpr: 'Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji procesu rekrutacji zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO).',
+        github: 'github.com/Grubix'
+    });
 
-    useEffect(() => {
-        console.log(name, lastName, birthDate, phoneNumber, emailAddress, street, zipCode);
-    }, [zipCode])
+    const handleBaseDataChange = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+
+        setBaseDataFields(fields => ({...fields, [field]: value }));
+    }
 
     return (
     <Fragment>
         <main className={styles.main}>
             <nav className={styles.main__topnav}>
                 <div className={styles.topnav__user}>
-                    <span>{ (name || 'name') + ' ' + (lastName || 'lastname') }</span>
+                    <span>{ baseDataFields['name'] + ' ' + baseDataFields['lastname'] }</span>
                 </div>
                 <div className={styles.topnav__buttons}>
                     <button type="button" className={buttons.buttonLight}>log out</button>
@@ -30,30 +39,80 @@ const Generator = props => {
                 </div>
             </nav>
             <div className={styles.data_group}>
-                <div className="cv-image">
-                    <img src="" className="cv-image__image" id="js-user-image"/>
-                    <input type="file" id="js-image-upload-input" accept="image/*" className="cv-image__select"/>
+                <div className={styles['cv-image']}>
+                    <img src={xd} className={styles['cv-image__image']} id="js-user-image"/>
+                    <input type="file" id="js-image-upload-input" accept="image/*" className={styles['cv-image__select']}/>
+                </div>
+                <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']} style={{ marginTop: 0 }}>
+                    <TextInput 
+                        placeholder="Name"
+                        name="name" 
+                        value={baseDataFields['name']}
+                        onChange={handleBaseDataChange}
+                    />
+                    <TextInput 
+                        placeholder="Lastname" 
+                        name="lastname" 
+                        value={baseDataFields['lastname']}
+                        onChange={handleBaseDataChange}
+                    />
                 </div>
                 <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextField placeholder="Name" initialValue="Krystian" onChange={(e) => setName(e.target.value)}/>
-                    <TextField placeholder="Lastname" initialValue="Borowicz"  onChange={(e) => setLastName(e.target.value)}/>
-                </div>
-                <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextField placeholder="Birth date DD.MM.YYYY" initialValue="08.12.1998" onChange={e => setBirthDate(e.target.value)}/>
-                    <TextField placeholder="Phone number" initialValue="696838220"  onChange={e => setPhoneNumber(e.target.value)}/>
+                    <TextInput 
+                        placeholder="Birth date DD.MM.YYYY" 
+                        name="birthDate" 
+                        value={baseDataFields['birthDate']} 
+                        onChange={handleBaseDataChange}
+                    />
+                    <TextInput 
+                        placeholder="Phone number" 
+                        name="phoneNumber" 
+                        value={baseDataFields['phoneNumber']} 
+                        onChange={handleBaseDataChange} 
+                        maxLength="9"
+                    />
                 </div>
                 <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--2-3']}>
-                    <TextField placeholder="Email address" initialValue="krypi23@gmail.com"  onChange={e => setEmailAddress(e.target.value)}/>
+                    <TextInput 
+                        placeholder="Email address" 
+                        name="email" 
+                        type="email"
+                        value={baseDataFields['email']} 
+                        onChange={handleBaseDataChange}
+                        errorMessage="email is invalid"
+                    />
                 </div>
                 <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextField placeholder="Street, house number" value="Nagietkowa 28" onChange={e => setStreet(e.target.value)}/>
-                    <TextField placeholder="Zip code and town" initialValue="Luboń 62-030"  onChange={e => setZipCode(e.target.value)}/>
+                    <TextInput 
+                        placeholder="Street and house number" 
+                        name="street" 
+                        value={baseDataFields['street']} 
+                        onChange={handleBaseDataChange}
+                    />
+                    <TextInput 
+                        placeholder="Zip code and town" 
+                        name="zipCode" 
+                        value={baseDataFields['zipCode']} 
+                        onChange={handleBaseDataChange}
+                    />
                 </div>
                 <div className={styles.row + ' ' + styles['row--1']}>
-                    <textarea className="form-control form-control--textarea" placeholder="RODO" id="js-basedata-rodo"></textarea>
+                    <TextInput 
+                        placeholder="GDPR clause" 
+                        name="gdpr" 
+                        value={baseDataFields['gdpr']} 
+                        onChange={handleBaseDataChange}
+                        multiline
+                        style={{ resize: 'vertical', maxHeight: '200px' }}
+                    />
                 </div>
                 <div className={styles.row + ' ' + styles['row--1']}>
-                    <TextField placeholder="Github" initialValue="github.com/Grubix" />
+                    <TextInput 
+                        placeholder="Github" 
+                        name="github" 
+                        value={baseDataFields['github']} 
+                        onChange={handleBaseDataChange}
+                    />
                 </div>
             </div>
             <div className={styles.data_group}>

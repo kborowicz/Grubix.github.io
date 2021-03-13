@@ -4,13 +4,14 @@ $main-width: 650px;
 
 .main {
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    top: 25px;
+    left: 25px;
+    bottom: 25px;
     width: 650px;
     background-color: $color-surface;
-    box-shadow: 10px 0px 20px rgba(125, 139, 153, 0.07);
+    box-shadow: 0 0 40px rgba(125, 139, 153, 0.2);
     overflow: auto;
+    border-radius: 10px;
 
     @include removeScrollbar;
 
@@ -48,6 +49,8 @@ $main-width: 650px;
 .data_group {
     padding: 25px;
     border-bottom: 2px solid #E5E8EC;
+
+
 
     &:last-of-type {
         border-bottom: none;
@@ -87,6 +90,9 @@ $main-width: 650px;
     }
 
     &__buttons {
+        button {
+            min-width: 80px;
+        }
         display: flex;
     }
 
@@ -130,6 +136,10 @@ $main-width: 650px;
     display: flex;
     align-items: flex-start;
     margin-top: 15px;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
 
     & > * {
         margin-right: 15px;
