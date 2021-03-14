@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import styles from './Generator.scss?module';
 import buttons from '@components/Button/Button.scss?module';
 import TextInput from '@components/TextInput/TextInput';
+import React, { Fragment, useState } from 'react';
+import BaseData from './BaseData';
+import styles from './Generator.scss?module';
 import xd from './xd.jpg';
-import { AiOutlineUser } from 'react-icons/ai';
 
 const Generator = () => {
     const [baseDataFields, setBaseDataFields] = useState({
@@ -23,134 +23,59 @@ const Generator = () => {
         const value = e.target.value;
 
         setBaseDataFields(fields => ({...fields, [field]: value }));
-    }
+    };
 
     return (
-    <Fragment>
-        <main className={styles.main}>
-            <nav className={styles.main__topnav}>
-                <div className={styles.topnav__user}>
-                    <span>{ baseDataFields['name'] + ' ' + baseDataFields['lastname'] }</span>
+        <Fragment>
+            <main className={styles.main}>
+                <nav className={styles.main__topnav}>
+                    <div className={styles.topnav__user}>
+                        <span>{ baseDataFields['name'] + ' ' + baseDataFields['lastname'] }</span>
+                    </div>
+                    <div className={styles.topnav__buttons}>
+                        <button type="button" className={buttons.buttonLight}>log out</button>
+                        <button type="button" className={buttons.buttonLight}>save</button>
+                        <button type="submit" className={buttons.buttonDark}>generate CV</button>
+                    </div>
+                </nav>
+                <BaseData {...baseDataFields} onDataChange={handleBaseDataChange}/>
+                <div className={styles.data_group}>
+                    <div className={styles.header}>Skills</div>
+                    <div id="js-skills"></div>
+                    <div className={styles.row}>
+                        <button type="button" className={buttons.buttonLight}>add</button>
+                    </div>
                 </div>
-                <div className={styles.topnav__buttons}>
-                    <button type="button" className={buttons.buttonLight}>log out</button>
-                    <button type="button" className={buttons.buttonLight}>save</button>
-                    <button type="submit" className={buttons.buttonDark}>generate CV</button>
+                <div className={styles.data_group}>
+                    <div className={styles.header}>Interests</div>
+                    <div id="js-interests"></div>
+                    <div className={styles.row}>
+                        <button type="button" className={buttons.buttonLight}>add</button>
+                    </div>
                 </div>
-            </nav>
-            <div className={styles.data_group}>
-                <div className={styles['cv-image']}>
-                    <img src={xd} className={styles['cv-image__image']} id="js-user-image"/>
-                    <input type="file" id="js-image-upload-input" accept="image/*" className={styles['cv-image__select']}/>
+                <div className={styles.data_group}>
+                    <div className={styles.header}>Employment history</div>
+                    <div id="js-employment-history"></div>
+                    <div className={styles.row}>
+                        <button type="button" className={buttons.buttonLight}>add</button>
+                    </div>
                 </div>
-                <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']} style={{ marginTop: 0 }}>
-                    <TextInput 
-                        placeholder="Name"
-                        name="name" 
-                        value={baseDataFields['name']}
-                        onChange={handleBaseDataChange}
-                    />
-                    <TextInput 
-                        placeholder="Lastname" 
-                        name="lastname" 
-                        value={baseDataFields['lastname']}
-                        onChange={handleBaseDataChange}
-                    />
+                <div className={styles.data_group}>
+                    <div className={styles.header}>Education history</div>
+                    <div id="js-education-history"></div>
+                    <div className={styles.row}>
+                        <button type="button" className={buttons.buttonLight}>add</button>
+                    </div>
                 </div>
-                <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextInput 
-                        placeholder="Birth date DD.MM.YYYY" 
-                        name="birthDate" 
-                        value={baseDataFields['birthDate']} 
-                        onChange={handleBaseDataChange}
-                    />
-                    <TextInput 
-                        placeholder="Phone number" 
-                        name="phoneNumber" 
-                        value={baseDataFields['phoneNumber']} 
-                        onChange={handleBaseDataChange} 
-                        maxLength="9"
-                    />
+                <div className="main__loading-overlay" id="js-loading-overlay">
+                    <div className="loader"></div>
                 </div>
-                <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--2-3']}>
-                    <TextInput 
-                        placeholder="Email address" 
-                        name="email" 
-                        type="email"
-                        value={baseDataFields['email']} 
-                        onChange={handleBaseDataChange}
-                        errorMessage="email is invalid"
-                    />
-                </div>
-                <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']}>
-                    <TextInput 
-                        placeholder="Street and house number" 
-                        name="street" 
-                        value={baseDataFields['street']} 
-                        onChange={handleBaseDataChange}
-                    />
-                    <TextInput 
-                        placeholder="Zip code and town" 
-                        name="zipCode" 
-                        value={baseDataFields['zipCode']} 
-                        onChange={handleBaseDataChange}
-                    />
-                </div>
-                <div className={styles.row + ' ' + styles['row--1']}>
-                    <TextInput 
-                        placeholder="GDPR clause" 
-                        name="gdpr" 
-                        value={baseDataFields['gdpr']} 
-                        onChange={handleBaseDataChange}
-                        multiline
-                        style={{ resize: 'vertical', maxHeight: '200px' }}
-                    />
-                </div>
-                <div className={styles.row + ' ' + styles['row--1']}>
-                    <TextInput 
-                        placeholder="Github" 
-                        name="github" 
-                        value={baseDataFields['github']} 
-                        onChange={handleBaseDataChange}
-                    />
-                </div>
+
+            </main>
+            <div className={styles.banner}>
+                <b>CV Generator</b>&nbsp;by&nbsp;<a href="https://github.com/Grubix" className="link" target="_blank">Grubix</a>
             </div>
-            <div className={styles.data_group}>
-                <div className="header">Skills</div>
-                <div id="js-skills"></div>
-                <div className="row">
-                    <button type="button" className="btn btn--light" id="js-skills-add-btn">add</button>
-                </div>
-            </div>
-            <div className={styles.data_group}>
-                <div className="header">Interests</div>
-                <div id="js-interests"></div>
-                <div className="row">
-                    <button type="button" className="btn btn--light" id="js-interests-add-btn">add</button>
-                </div>
-            </div>
-            <div className={styles.data_group}>
-                <div className="header">Employment history</div>
-                <div id="js-employment-history"></div>
-                <div className="row">
-                    <button type="button" className="btn btn--light" id="js-employment-add-btn">add</button>
-                </div>
-            </div>
-            <div className={styles.data_group}>
-                <div className="header">Education history</div>
-                <div id="js-education-history"></div>
-                <div className="row">
-                    <button type="button" className="btn btn--light" id="js-education-add-btn">add</button>
-                </div>
-            </div>
-            <div className="main__loading-overlay" id="js-loading-overlay">
-                <div className="loader"></div>
-            </div>
-        </main>
-        <div className={styles.banner}>
-            <b>CV Generator</b>&nbsp;by&nbsp;<a href="https://github.com/Grubix" className="link" target="_blank">Grubix</a>
-        </div>
-    </Fragment>
+        </Fragment>
     );
 };
 
