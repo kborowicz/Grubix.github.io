@@ -1,13 +1,11 @@
 import buttons from '@components/Button/Button.scss?module';
-import TextInput from '@components/TextInput/TextInput';
 import React, { Fragment, useState } from 'react';
 import BaseData from './BaseData';
 import styles from './Generator.scss?module';
-import xd from './xd.jpg';
 
-const Generator = () => {
+const Generator = ({ setToken }) => {
     const [baseDataFields, setBaseDataFields] = useState({
-        name: 'Krystian',
+        firstname: 'Krystian',
         lastname: 'Borowicz',
         birthDate: '08.12.1998',
         phoneNumber: '696838220',
@@ -30,10 +28,10 @@ const Generator = () => {
             <main className={styles.main}>
                 <nav className={styles.main__topnav}>
                     <div className={styles.topnav__user}>
-                        <span>{ baseDataFields['name'] + ' ' + baseDataFields['lastname'] }</span>
+                        <span>{ baseDataFields['firstname'] + ' ' + baseDataFields['lastname'] }</span>
                     </div>
                     <div className={styles.topnav__buttons}>
-                        <button type="button" className={buttons.buttonLight}>log out</button>
+                        <button type="button" className={buttons.buttonLight} onClick={() => setToken(false)}>log out</button>
                         <button type="button" className={buttons.buttonLight}>save</button>
                         <button type="submit" className={buttons.buttonDark}>generate CV</button>
                     </div>
@@ -73,7 +71,7 @@ const Generator = () => {
 
             </main>
             <div className={styles.banner}>
-                <b>CV Generator</b>&nbsp;by&nbsp;<a href="https://github.com/Grubix" className="link" target="_blank">Grubix</a>
+                <b>CV Generator</b>&nbsp;by&nbsp;<a href="https://github.com/Grubix" className="link" target="_blank">kborowicz</a>
             </div>
         </Fragment>
     );

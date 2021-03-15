@@ -5,7 +5,7 @@ import xd from './xd.jpg';
 
 const BaseData = props => {
     const {
-        name,
+        firstname,
         lastname,
         birthDate,
         phoneNumber,
@@ -25,9 +25,9 @@ const BaseData = props => {
             </div>
             <div className={styles.row + ' ' + styles['row--right'] + ' ' + styles['row--1-3']} style={{ marginTop: 0 }}>
                 <TextInput
-                    placeholder="Name"
-                    name="name"
-                    value={name}
+                    placeholder="Firstname"
+                    name="firstname"
+                    value={firstname}
                     onChange={onDataChange}
                 />
                 <TextInput

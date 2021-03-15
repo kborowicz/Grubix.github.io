@@ -77,7 +77,7 @@ const TextInput = props => {
             <div className={styles.wrapper}>
                 { inputElement }
                 <label htmlFor={id} className={labelClassList.join(' ')}>
-                    {placeholder}
+                    { placeholder }
                 </label>
             </div>
             {!valueChanged && errorMessage &&
