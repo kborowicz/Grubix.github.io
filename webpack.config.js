@@ -43,9 +43,9 @@ const config = isProduction => ({
                             }
                         }
                     },
-                    {
-                        loader: "group-css-media-queries-loader"
-                    },
+                    // {
+                    //     loader: "group-css-media-queries-loader"
+                    // },
                     {
                         loader: 'sass-loader'
                     },
