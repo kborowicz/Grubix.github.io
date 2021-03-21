@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
     overflow-x: hidden;
     margin: 0;
@@ -30,28 +35,28 @@ a {
     font-family: "Hack";
     font-style: normal;
     font-weight: 400;
-    src: url('../../fonts/Hack-Regular.ttf');
+    src: url("../../fonts/Hack-Regular.ttf");
 }
 
 @font-face {
     font-family: "Hack";
     font-style: normal;
     font-weight: 700;
-    src: url('../../fonts/Hack-Bold.ttf');
+    src: url("../../fonts/Hack-Bold.ttf");
 }
 
 @font-face {
     font-family: "Hack";
     font-style: italic;
     font-weight: 400;
-    src: url('../../fonts/Hack-Italic.ttf');
+    src: url("../../fonts/Hack-Italic.ttf");
 }
 
 @font-face {
     font-family: "Hack";
     font-style: italic;
     font-weight: 700;
-    src: url('../../fonts/Hack-BoldItalic.ttf');
+    src: url("../../fonts/Hack-BoldItalic.ttf");
 }
 
 .menu {
@@ -78,7 +83,7 @@ a {
         color: #000;
 
         &::before {
-            content: '_';
+            content: "_";
         }
 
         &:hover {

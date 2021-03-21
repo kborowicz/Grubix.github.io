@@ -13,6 +13,7 @@ const config = isProduction => ({
         filename: isProduction ? 'build.[contenthash:8].js' : '[name].js',
         path: path.resolve(__dirname, './portfolio'),
     },
+    target: ['web', 'es5'],
     performance: {
         hints: false,
     },
@@ -54,17 +55,9 @@ const config = isProduction => ({
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            ['@babel/preset-env', {
-                                "targets": "defaults"
-                            }],
-                            '@babel/preset-react'
-                        ]
-                    }
-                }]
+                use: [
+                    { loader: 'babel-loader' }
+                ]
             },
             {
                 test: /\.(woff2?|ttf|otf|eot|svg|png)$/,
