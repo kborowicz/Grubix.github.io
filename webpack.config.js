@@ -38,7 +38,6 @@ const config = isProduction => ({
                         loader: "css-loader",
                         options: {
                             url: true,
-                            importLoaders: 1,
                             modules: {
                                 localIdentName: isProduction ? "[hash:base64:5]" : "[name]__[local]"
                             }
@@ -70,7 +69,9 @@ const config = isProduction => ({
         ],
     },
     plugins: [
-        new CleanWebpackPlugin(),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['**/*', '!resume.pdf', '!favicon.ico']
+        }),
         new MiniCssExtractPlugin({
             filename: isProduction ? 'style.[contenthash:8].css' : '[name].css',
         }),

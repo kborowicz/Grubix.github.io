@@ -1,69 +1,31 @@
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-}
+$menu-width: 200px;
 
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-    overflow-x: hidden;
-    margin: 0;
-    background-color: rgb(248, 248, 248);
-    font-family: "Hack", sans-serif;
-    font-size: 14px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
-#app {
-    width: 100%;
+.container {
     height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
 }
 
-@font-face {
-    font-family: "Hack";
-    font-style: normal;
-    font-weight: 400;
-    src: url("../../fonts/Hack-Regular.ttf");
+.page {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 
-@font-face {
-    font-family: "Hack";
-    font-style: normal;
-    font-weight: 700;
-    src: url("../../fonts/Hack-Bold.ttf");
-}
-
-@font-face {
-    font-family: "Hack";
-    font-style: italic;
-    font-weight: 400;
-    src: url("../../fonts/Hack-Italic.ttf");
-}
-
-@font-face {
-    font-family: "Hack";
-    font-style: italic;
-    font-weight: 700;
-    src: url("../../fonts/Hack-BoldItalic.ttf");
+.pageContent {
+    margin-left: $menu-width;
+    padding: 50px 20px;
 }
 
 .menu {
     position: fixed;
-    transform: translateX(-220%);
-    left: 50%;
-    top: 200px;
+    width: $menu-width;
+    top: 50px;
+    bottom: 50px;
+    border-right: 1px solid rgb(235, 235, 235);
+    padding-top: 150px;
 }
 
 .menuList {
@@ -75,18 +37,20 @@ a {
 .menuItem {
     user-select: none;
     font-size: 15px;
-    margin: 8px 0 0 0;
+    margin: 10px 0 0 0;
     padding: 0;
     color: #8f939c;
 
     .selected {
+        pointer-events: none;
         color: #000;
 
-        &::before {
-            content: "_";
+        &::after {
+            content: "()";
         }
 
         &:hover {
+
             text-decoration: none;
             cursor: default;
         }
