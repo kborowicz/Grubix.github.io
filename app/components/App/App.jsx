@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { HashRouter, NavLink, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, NavLink, Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import styles from './App.scss?module';
 
 const Link = ({ children, ...props }) => {
@@ -9,6 +10,36 @@ const Link = ({ children, ...props }) => {
         </NavLink>
     );
 }
+
+const animation = {
+    initial: {
+        opacity: 0
+    },
+    animate: {
+        opacity: 1,
+        transition: { duration: 0.4 }
+    },
+    exit: {
+        opacity: 0,
+        transition: { duration: 0.4 }
+    }
+};
+
+const Test = ({ children }) => {
+    return (
+        <motion.div {...animation}>
+            { children }
+        </motion.div>
+    )
+};
+
+const Test2 = ({ children }) => {
+    return (
+        <motion.div {...animation}>
+            { children }
+        </motion.div>
+    )
+};
 
 const App = () => {
     return (
@@ -26,15 +57,17 @@ const App = () => {
                         </ul>
                     </nav>
                     <div className={styles.pageContent}>
-                        <Switch>
-                            <Route path="/about-me"><p style={{ marginTop: '0px', marginBottom: '3000px' }}>About me</p></Route>
-                            <Route path="/career">Career</Route>
-                            <Route path="/work">work</Route>
-                            <Route path="/contact">contact</Route>
-                            <Route exact path="/">
-                                <Redirect to="/about-me" />
-                            </Route>
-                        </Switch>
+                        <AnimatePresence exitBeforeEnter>
+                            <Switch>
+                                <Route path="/about-me"><Test><p style={{ marginTop: '0px', marginBottom: '3000px' }}>About me</p></Test></Route>
+                                <Route path="/career"><Test2>Career</Test2></Route>
+                                <Route path="/work">Work</Route>
+                                <Route path="/contact">contact</Route>
+                                <Route exact path="/">
+                                    <Redirect to="/about-me" />
+                                </Route>
+                            </Switch>
+                        </AnimatePresence>
                     </div>
                 </main>
             </div>
